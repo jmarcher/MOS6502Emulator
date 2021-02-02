@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/CPU6502.dir/main.cpp.o -o CPU6502 
