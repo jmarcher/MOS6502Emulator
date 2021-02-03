@@ -1,36 +1,6 @@
 #include <iostream>
-#include <cassert>
-
-using Byte = uint8_t;
-using Word = uint16_t;
-
-struct Memory {
-    static constexpr uint32_t MAX_MEMORY = 1024 * 64;
-    Byte Data[MAX_MEMORY];
-
-    void Initialise() {
-        for (uint32_t i = 0; i < MAX_MEMORY; ++i) {
-            Data[i] = 0;
-        }
-    }
-
-    Byte operator[](uint32_t Address) const {
-        assert(Address < MAX_MEMORY);
-        return Data[Address];
-    }
-
-    Byte& operator[](uint32_t Address){
-        assert(Address < MAX_MEMORY);
-        return Data[Address];
-    }
-
-    void WriteWord(uint32_t & cycles, uint32_t Address, Word word)
-    {
-        Data[Address] = word & 0xFF;
-        Data[Address + 1] = (word >> 8);
-        cycles -= 2;
-    }
-};
+#include "Types.h"
+#include "Memory.h"
 
 struct CPU {
 
@@ -132,8 +102,8 @@ struct CPU {
 };
 
 int main() {
-    Memory memory;
-    CPU cpu;
+    Memory memory{};
+    CPU cpu{};
     cpu.Reset(memory);
 
     // Start of Inline Program
