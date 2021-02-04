@@ -41,7 +41,7 @@ target_include_directories (CPU6502_lib PUBLIC "${PROJECT_SOURCE_DIR}/lib/")
 
 set  (TEST_SOURCES
         "tests/main.cpp"
-        "tests/ResetMemoryTests.cpp")
+        "tests/ResetMemoryTests.cpp" tests/SimpleLoadAndJumpTests.cpp)
 
 source_group("tests" FILES ${TEST_SOURCES})
 
