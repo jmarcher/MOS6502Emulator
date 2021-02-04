@@ -47,4 +47,4 @@ jobs:
     - name: Test (GTests)
       working-directory: ${{github.workspace}}/build
       shell: bash
-      run: M6502Test
+      run: ./M6502Test
