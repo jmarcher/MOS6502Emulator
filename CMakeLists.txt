@@ -3,4 +3,4 @@ project(CPU6502)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(CPU6502 main.cpp Memory.cpp Memory.h Types.h)
+add_executable(CPU6502 main.cpp lib/Memory.cpp lib/Memory.h lib/Types.h lib/CPU.cpp lib/CPU.h)
