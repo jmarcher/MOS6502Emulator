@@ -21,7 +21,6 @@ TEST_F(SimpleLoadAndJumpTests, TestThatTheFlagsAreCorrectlySetAfterLDA )
 {
 
 // when:
-    cpu.Reset( memory );
     memory[0xFFFC] = CPU::INS_JPR;
     memory[0xFFFD] = 0x42;
     memory[0xFFFE] = 0x42;

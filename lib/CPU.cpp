@@ -2,8 +2,8 @@
 #include "CPU.h"
 
 void CPU::Reset(Memory &memory) {
-    PC = 0xFFFC;
-    SP = 0x0100;
+    PC = PC_START_ADDRESS;
+    SP = SP_START_ADDRESS;
     C = Z = I = D = B = V = N = 0;
     A = X = Y = 0;
     memory.Initialise();
