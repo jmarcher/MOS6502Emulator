@@ -18,8 +18,8 @@ struct CPU {
     Byte N: 1; // Status flag
 
     // Some constant helpers
-    static constexpr Byte PC_START_ADDRESS = 0xFFFC;
-    static constexpr Byte SP_START_ADDRESS = 0x0100;
+    static constexpr Word PC_START_ADDRESS = 0xFFFC;
+    static constexpr Word SP_START_ADDRESS = 0x0100;
 
     // Optcodes
     static constexpr Byte INS_LDA_IM = 0xA9;

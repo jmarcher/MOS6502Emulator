@@ -21,9 +21,9 @@ TEST_F(SimpleLoadAndJumpTests, TestThatTheFlagsAreCorrectlySetAfterLDA )
 {
 
 // when:
-    memory[0xFFFC] = CPU::INS_JPR;
-    memory[0xFFFD] = 0x42;
-    memory[0xFFFE] = 0x42;
+    memory[CPU::PC_START_ADDRESS] = CPU::INS_JPR;
+    memory[CPU::PC_START_ADDRESS + 1] = 0x42;
+    memory[CPU::PC_START_ADDRESS + 2] = 0x42;
     memory[0x4242] = CPU::INS_LDA_IM;
     memory[0x4243] = 0x84;
     cpu.Execute(9, memory);
@@ -39,10 +39,9 @@ TEST_F(SimpleLoadAndJumpTests, TestThatTheFlagsAreCorrectlySetAfterLDAWithNEqual
 {
 
 // when:
-    cpu.Reset( memory );
-    memory[0xFFFC] = CPU::INS_JPR;
-    memory[0xFFFD] = 0x42;
-    memory[0xFFFE] = 0x42;
+    memory[CPU::PC_START_ADDRESS] = CPU::INS_JPR;
+    memory[CPU::PC_START_ADDRESS + 1] = 0x42;
+    memory[CPU::PC_START_ADDRESS + 2] = 0x42;
     memory[0x4242] = CPU::INS_LDA_IM;
     memory[0x4243] = 0x0;
     cpu.Execute(9, memory);
