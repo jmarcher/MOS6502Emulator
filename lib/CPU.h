@@ -3,8 +3,8 @@
 #include "Types.h"
 #include "Memory.h"
 
-struct CPU {
-
+class CPU {
+public:
     Word PC; // Program counter
     Word SP; // Stack pointer
     Byte A, X, Y; // Registers
@@ -28,13 +28,14 @@ struct CPU {
     static constexpr Byte INS_JPR = 0x20;
 
     void Reset(Memory &memory);
+    void Execute(uint32_t cycles, Memory &memory);
 
+private:
     Byte FetchByte(uint32_t& cycles, Memory &memory);
     Word FetchWord(uint32_t& cycles, Memory &memory);
     static Byte ReadByte(uint32_t &cycles, Byte &address, Memory &memory);
 
     void LDASetStatusFlags();
 
-    void Execute(uint32_t cycles, Memory &memory);
 };
 #endif //CPU6502_CPU_H

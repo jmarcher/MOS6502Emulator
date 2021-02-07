@@ -3,13 +3,12 @@
 
 #include "Types.h"
 
-struct Memory {
+class Memory {
+public:
     static constexpr uint32_t MAX_MEMORY = 1024 * 64;
     Byte Data[MAX_MEMORY];
 
     void Initialise();
-
-    Byte operator[](uint32_t Address) const;
 
     Byte& operator[](uint32_t Address);
 
