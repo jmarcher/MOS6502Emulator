@@ -52,3 +52,15 @@ TEST_F(SimpleLoadAndJumpTests, TestThatTheFlagsAreCorrectlySetAfterLDAWithNEqual
     EXPECT_EQ( cpu.Z, 0x1 );
     EXPECT_EQ( cpu.N, 0x0 );
 }
+
+TEST_F(SimpleLoadAndJumpTests, ItSouldPrintAnErrorWhenOptCodeNotRecognized )
+{
+    testing::internal::CaptureStderr();
+// when:
+    memory[CPU::PC_START_ADDRESS] = 0x02;
+    cpu.Execute(1, memory);
+    std::string output = testing::internal::GetCapturedStderr();
+// Test that the flags are correct
+//then:
+    EXPECT_EQ( output, "Instruction not handled: \x2\n" );
+}

@@ -11,11 +11,6 @@ void Memory::Initialise()  {
     }
 }
 
-Byte Memory::operator[](uint32_t Address) const {
-    assert(Address < MAX_MEMORY);
-    return Data[Address];
-}
-
 Byte& Memory::operator[](uint32_t Address){
     assert(Address < MAX_MEMORY);
     return Data[Address];

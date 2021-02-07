@@ -74,7 +74,7 @@ void CPU::Execute(uint32_t cycles, Memory &memory) {
             }
                 break;
             default:
-                std::cout << "Instruction not handled: " << instruction << std::endl;
+                std::cerr << "Instruction not handled: " << instruction << std::endl;
         }
     }
 }
