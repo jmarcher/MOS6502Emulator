@@ -41,6 +41,8 @@ void CPU::Execute(uint32_t cycles, Memory &memory) {
     while(cycles > 0){
         Byte instruction = FetchByte(cycles, memory);
         switch (instruction) {
+            case INS_NOP:
+            break;
             case INS_LDA_IM:
             {
                 Byte value = FetchByte(cycles, memory);

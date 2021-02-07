@@ -26,6 +26,7 @@ public:
     static constexpr Byte INS_LDA_ZP = 0xA5;
     static constexpr Byte INS_LDA_ZPX = 0xB5;
     static constexpr Byte INS_JPR = 0x20;
+    static constexpr Byte INS_NOP = 0xEA;
 
     void Reset(Memory &memory);
     void Execute(uint32_t cycles, Memory &memory);
