@@ -11,12 +11,12 @@ void Memory::Initialise()  {
     }
 }
 
-Byte& Memory::operator[](uint32_t Address){
+MOS6502::Byte& Memory::operator[](uint32_t Address){
     assert(Address < MAX_MEMORY);
     return Data[Address];
 }
 
-void Memory::WriteWord(uint32_t & cycles, uint32_t Address, Word word)
+void Memory::WriteWord(uint32_t & cycles, uint32_t Address, MOS6502::Word word)
 {
     Data[Address] = word & 0xFF;
     Data[Address + 1] = (word >> 8);

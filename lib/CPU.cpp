@@ -1,7 +1,7 @@
 #include <iostream>
 #include "CPU.h"
 
-void CPU::Reset(Memory &memory) {
+void MOS6502::CPU::Reset(Memory &memory) {
     PC = PC_START_ADDRESS;
     SP = SP_START_ADDRESS;
     C = Z = I = D = B = V = N = 0;
@@ -9,14 +9,14 @@ void CPU::Reset(Memory &memory) {
     memory.Initialise();
 }
 
-Byte CPU::FetchByte(uint32_t &cycles, Memory &memory) {
+MOS6502::Byte MOS6502::CPU::FetchByte(uint32_t &cycles, Memory &memory) {
     Byte data = memory[PC];
     PC ++;
     cycles--;
     return data;
 }
 
-Word CPU::FetchWord(uint32_t &cycles, Memory &memory) {
+MOS6502::Word MOS6502::CPU::FetchWord(uint32_t &cycles, Memory &memory) {
     // 6502 is little endian
     Word data = memory[PC];
     PC ++;
@@ -26,18 +26,18 @@ Word CPU::FetchWord(uint32_t &cycles, Memory &memory) {
     return data;
 }
 
-Byte CPU::ReadByte(uint32_t &cycles, Byte &address, Memory &memory) {
+MOS6502::Byte MOS6502::CPU::ReadByte(uint32_t &cycles, Byte &address, Memory &memory) {
     Byte data = memory[address];
     cycles--;
     return data;
 }
 
-void CPU::LDASetStatusFlags() {
+void MOS6502::CPU::LDASetStatusFlags() {
     Z = (A == 0);
     N = (A & 0b10000000) > 0;
 }
 
-void CPU::Execute(uint32_t cycles, Memory &memory) {
+void MOS6502::CPU::Execute(uint32_t cycles, Memory &memory) {
     while(cycles > 0){
         Byte instruction = FetchByte(cycles, memory);
         switch (instruction) {

@@ -6,12 +6,12 @@
 class Memory {
 public:
     static constexpr uint32_t MAX_MEMORY = 1024 * 64;
-    Byte Data[MAX_MEMORY];
+    MOS6502::Byte Data[MAX_MEMORY];
 
     void Initialise();
 
-    Byte& operator[](uint32_t Address);
+    MOS6502::Byte& operator[](uint32_t Address);
 
-    void WriteWord(uint32_t & cycles, uint32_t Address, Word word);
+    void WriteWord(uint32_t & cycles, uint32_t Address, MOS6502::Word word);
 };
 #endif //MOS6502EMULATOR_MEMORY_H

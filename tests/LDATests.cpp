@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include "CPU.h"
 #include "Memory.h"
+using namespace MOS6502;
 class LDATests : public testing::Test
 {
 public:
