@@ -36,7 +36,7 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif ()
 
 
-add_library(CPU6502_lib lib/Memory.cpp lib/Memory.h lib/Types.h lib/CPU.cpp lib/CPU.h)
+add_library(CPU6502_lib lib/Memory.cpp lib/Memory.h lib/Types.h lib/CPU.cpp lib/CPU.h lib/Instructions/JumpToSubroutine.cpp lib/Instructions/JumpToSubroutine.h lib/InstructionInterface.h)
 target_include_directories(CPU6502_lib PUBLIC "${PROJECT_SOURCE_DIR}/lib/")
 
 set(TEST_SOURCES

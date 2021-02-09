@@ -30,15 +30,13 @@ namespace MOS6502 {
 
         void Reset(Memory &memory);
 
-        void Execute(uint32_t cycles, Memory &memory);
+        int32_t Execute(uint32_t cycles, Memory &memory);
 
-    private:
         Byte FetchByte(uint32_t &cycles, Memory &memory);
-
         Word FetchWord(uint32_t &cycles, Memory &memory);
-
         static Byte ReadByte(uint32_t &cycles, Byte &address, Memory &memory);
 
+    private:
         void LDASetStatusFlags();
 
     };

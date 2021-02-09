@@ -1,6 +1,8 @@
 #include <iostream>
 #include "CPU.h"
 
+#include "Instructions/JumpToSubroutine.h"
+
 void MOS6502::CPU::Reset(Memory &memory) {
     PC = PC_START_ADDRESS;
     SP = SP_START_ADDRESS;
@@ -37,11 +39,15 @@ void MOS6502::CPU::LDASetStatusFlags() {
     N = (A & 0b10000000) > 0;
 }
 
-void MOS6502::CPU::Execute(uint32_t cycles, Memory &memory) {
+int32_t MOS6502::CPU::Execute(uint32_t cycles, Memory &memory) {
+    const uint32_t cyclesRequested = cycles;
     while(cycles > 0){
         Byte instruction = FetchByte(cycles, memory);
         switch (instruction) {
             case INS_NOP:
+                {
+                    cycles--;
+                }
             break;
             case INS_LDA_IM:
             {
@@ -68,15 +74,14 @@ void MOS6502::CPU::Execute(uint32_t cycles, Memory &memory) {
                 break;
             case INS_JPR:
             {
-                Word Address = FetchWord(cycles, memory);
-                memory.WriteWord(cycles, SP, PC);
-                SP++;
-                PC = Address;
-                cycles -= 2;
+                JumpToSubroutine jpr{};
+                cycles = jpr.Handle(cycles, *this, memory);
             }
                 break;
             default:
                 std::cerr << "Instruction not handled: " << instruction << std::endl;
         }
     }
+
+    return cyclesRequested - cycles;
 }

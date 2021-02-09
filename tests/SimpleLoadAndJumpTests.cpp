@@ -27,10 +27,11 @@ TEST_F(SimpleLoadAndJumpTests, TestThatTheFlagsAreCorrectlySetAfterLDA )
     memory[CPU::PC_START_ADDRESS + 2] = 0x42;
     memory[0x4242] = CPU::INS_LDA_IM;
     memory[0x4243] = 0x84;
-    cpu.Execute(9, memory);
+    int32_t cyclesUsed = cpu.Execute(9, memory);
 
 // Test that the flags are correct
 //then:
+    EXPECT_EQ(cyclesUsed, 9);
     EXPECT_EQ( cpu.A, 0x84 );
     EXPECT_EQ( cpu.Z, 0x0 );
     EXPECT_EQ( cpu.N, 0x1 );
@@ -45,10 +46,11 @@ TEST_F(SimpleLoadAndJumpTests, TestThatTheFlagsAreCorrectlySetAfterLDAWithNEqual
     memory[CPU::PC_START_ADDRESS + 2] = 0x42;
     memory[0x4242] = CPU::INS_LDA_IM;
     memory[0x4243] = 0x0;
-    cpu.Execute(9, memory);
+    int32_t cyclesUsed = cpu.Execute(9, memory);
 
 // Test that the flags are correct
 //then:
+    EXPECT_EQ(cyclesUsed, 9);
     EXPECT_EQ( cpu.A, 0x0 );
     EXPECT_EQ( cpu.Z, 0x1 );
     EXPECT_EQ( cpu.N, 0x0 );
